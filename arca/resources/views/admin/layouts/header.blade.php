@@ -70,7 +70,7 @@
                     <i class="nav-icon fas fa-users"></i>
                   <?php } ?>
                   <p>
-                    User
+                    Users
                   </p>
                   </a>
                 </li>
@@ -87,6 +87,18 @@
                       Invoice
                     </p>
                     </a>
+                  </li>
+                  <li class="nav-header">SETTINGS</li>
+                  <li class="nav-item">
+                    <form id="logout-form" action="{{route('logout')}}" method="POST">
+                      @csrf
+                      <a href="javascript:;" onclick="document.getElementById('logout-form').submit();" class="nav-link">
+                        <i class="nav-icon fas fa-sign-out-alt"></i>
+                        <p>
+                          Log out
+                        </p>
+                      </a>
+                    </form>
                   </li>
           </ul>
         </nav>

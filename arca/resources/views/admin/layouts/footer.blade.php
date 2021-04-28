@@ -7,13 +7,13 @@
   <link rel="shortcut icon" type="image/x-icon" href="{{asset('/images/icon.png')}}">
   <title>TITLE</title>
   <!-- Tell the browser to be responsive to screen width -->
-  <meta name="viewport" content="width=device-width, initial-scale=1')}}">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <link rel="stylesheet" href="{{asset('/plugins/datatables-bs4/css/dataTables.bootstrap4.css')}}">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="{{asset('/plugins/fontawesome-free/css/all.min.css')}}">
   <!-- Ionicons -->
-  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css')}}">
+  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <!-- Tempusdominus Bbootstrap 4 -->
   <link rel="stylesheet" href="{{asset('/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css')}}">
   <!-- iCheck -->
@@ -38,14 +38,14 @@
 
   <script src="{{asset('/plugins/select2/js/select2.full.min.js')}}"></script>
 
-  <script src="https://code.jquery.com/jquery-3.5.1.js')}}"></script>
+  <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 
   <!-- Sweet Alert 2 -->
   <script src="{{asset('/plugins/sweetalert2/sweetalert2.all.min.js')}}"></script>
 
 </head>
 
-@include('admin.layout.header')
+@include('admin.layouts.header')
 
 @yield('content')
 
@@ -61,6 +61,10 @@
   <div class="float-right d-none d-sm-inline-block">
     <b>Version</b> 1
   </div>
+  <div class="float-left d-sm-inline-block">
+    <?= strftime('%A, %d %B %Y') ?>, <span class="live-clock"><?= date('H:i:s') ?></span>
+  </div>
+</footer>
 </footer>
 </div>
 <!-- ./wrapper -->
@@ -99,15 +103,18 @@
 <script src="{{asset('/plugins/bs-custom-file-input/bs-custom-file-input.min.js')}}"></script>
 
 <script>
-  $(function() {
-    $("#example1").DataTable();
-    $('#example2').DataTable({
-      "paging": true,
-      "lengthChange": false,
-      "searching": false,
-      "ordering": true,
-      "info": true,
-      "autoWidth": false,
-    });
+  $(document).ready(function() {
+    setInterval(function() {
+      var date = new Date();
+      var h = date.getHours(),
+        m = date.getMinutes(),
+        s = date.getSeconds();
+      h = ("0" + h).slice(-2);
+      m = ("0" + m).slice(-2);
+      s = ("0" + s).slice(-2);
+
+      var time = h + ":" + m + ":" + s;
+      $('.live-clock').html(time);
+    }, 1000);
   });
 </script>
