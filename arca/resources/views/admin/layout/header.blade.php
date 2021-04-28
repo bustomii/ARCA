@@ -26,12 +26,21 @@
     <!-- Main Sidebar Container -->
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
       <!-- Brand Logo -->
-      <a href="#" class="brand-link" style="text-align: center;">
-        <span class="brand-text font-weight-light"></span>
-      </a>
+      <div style="text-align: center;" class="brand-link">
+        <i class="nav-icon fas fa-home"></i><span class="brand-text font-weight-light"></span>
+      </div>
 
       <!-- Sidebar -->
       <div class="sidebar">
+        <!-- Sidebar user panel (optional) -->
+        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+          <div class="image">
+            <img src="{{asset('images/user.png')}}" class="img-circle">
+          </div>
+          <div class="info">
+            <a href="" class="d-block">Bustomi</a>
+          </div>
+        </div>
         <!-- Sidebar user panel (optional) -->
         <!-- Sidebar Menu -->
         <nav class="mt-2">
@@ -40,17 +49,45 @@
             <?php if ('home' == 'home') { ?>
               <li class="nav-item has-treeview menu-open">
                 <a href="" class="nav-link active">
-                  <i class="nav-icon fas fa-home"></i>
+                  <i class="nav-icon fas fa-briefcase"></i>
                 <?php } else { ?>
               <li class="nav-item">
                 <a href="" class="nav-link">
-                  <i class="nav-icon fas fa-home"></i>
+                  <i class="nav-icon fas fa-briefcase"></i>
                 <?php } ?>
                 <p>
-                  KPI
+                  Barang
                 </p>
                 </a>
               </li>
+              <?php if ('home' == 'users') { ?>
+                <li class="nav-item has-treeview menu-open">
+                  <a href="" class="nav-link active">
+                    <i class="nav-icon fas fa-users"></i>
+                  <?php } else { ?>
+                <li class="nav-item">
+                  <a href="" class="nav-link">
+                    <i class="nav-icon fas fa-users"></i>
+                  <?php } ?>
+                  <p>
+                    User
+                  </p>
+                  </a>
+                </li>
+                <?php if ('home' == 'invoice') { ?>
+                  <li class="nav-item has-treeview menu-open">
+                    <a href="" class="nav-link active">
+                      <i class="nav-icon fas fa-file-invoice"></i>
+                    <?php } else { ?>
+                  <li class="nav-item">
+                    <a href="" class="nav-link">
+                      <i class="nav-icon fas fa-file-invoice"></i>
+                    <?php } ?>
+                    <p>
+                      Invoice
+                    </p>
+                    </a>
+                  </li>
           </ul>
         </nav>
         <!-- /.sidebar-menu -->
