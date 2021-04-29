@@ -7,8 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Invoice extends Model
 {
-    use HasFactory, Notifiable;
+    use HasFactory;
 
+    protected $table = "invoice";
     /**
      * The attributes that are mass assignable.
      *
@@ -16,17 +17,13 @@ class Invoice extends Model
      */
     protected $fillable = [
         'iduser',
-        'idbarang',
-        'kuantiti',
-        'status'
+        'status',
+        'created_at',
+        'updated_at',
     ];
 
     public function user()
     {
         return $this->belongsTo(User::class);
-    }
-    public function barang()
-    {
-        return $this->belongsTo(Barang::class);
     }
 }

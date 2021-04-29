@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\User;
+use App\Models\User;
+use App\Models\Barang;
+use App\Models\Invoice;
 
 class AdminController extends Controller
 {
@@ -15,7 +17,6 @@ class AdminController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('is_admin');
     }
 
     /**
@@ -25,11 +26,25 @@ class AdminController extends Controller
      */
     public function index()
     {
-        return view('admin.barang');
+        $barang = Barang::get();
+        $active = 'Barang';
+        // passing data ke variabel $paket
+        return view('admin.barang', ['barang' => $barang, 'active' => $active]);
     }
 
     public function users()
     {
-        return view('admin.users');
+        $users = User::get();
+        $active = 'Users';
+        return view('admin.users', ['users' => $users, 'active' => $active]);
+    }
+
+    public function invoice()
+    {
+        $invoice = Invoice::get();
+        // $users = User::find();
+
+        $active = 'Invoice';
+        return view('admin.invoice', ['invoice' => $invoice, 'active' => $active]);
     }
 }

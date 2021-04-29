@@ -7,8 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Barang extends Model
 {
-    use HasFactory, Notifiable;
+    use HasFactory;
 
+    protected $table = "barang";
     /**
      * The attributes that are mass assignable.
      *
@@ -20,7 +21,8 @@ class Barang extends Model
         'stok',
         'discount'
     ];
-    public function Invoice()
+
+    public function invoice()
     {
         return $this->hasOne(Invoice::class);
     }

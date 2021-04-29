@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\User;
+use App\Models\User;
+use App\Models\Invoice;
 
 class UserController extends Controller
 {
@@ -24,6 +25,9 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('user.invoice');
+        $invoice = Invoice::where('iduser', auth()->user()->id)->get();
+        // $users = User::find();
+        $active = 'Invoice';
+        return view('user.invoice', ['invoice' => $invoice, 'active' => $active]);
     }
 }

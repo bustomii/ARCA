@@ -11,7 +11,6 @@
           <!-- <a href="#" class="nav-link">>nbs.</a> -->
         </li>
       </ul>
-
       <!-- Right navbar links -->
       <ul class="navbar-nav ml-auto">
         <li class="nav-item d-none d-sm-inline-block">
@@ -29,7 +28,6 @@
       <div style="text-align: center;" class="brand-link">
         <i class="nav-icon fas fa-home"></i><span class="brand-text font-weight-light"></span>
       </div>
-
       <!-- Sidebar -->
       <div class="sidebar">
         <!-- Sidebar user panel (optional) -->
@@ -38,7 +36,7 @@
             <img src="{{asset('images/user.png')}}" class="img-circle">
           </div>
           <div class="info">
-            <a href="" class="d-block">Bustomi</a>
+            <a href="" class="d-block">{{ Auth::user()->name }}</a>
           </div>
         </div>
         <!-- Sidebar user panel (optional) -->
@@ -46,60 +44,42 @@
         <nav class="mt-2">
           <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
             <li class="nav-header">MAIN MENU</li>
-            <?php if ('home' == 'home') { ?>
-              <li class="nav-item has-treeview menu-open">
-                <a href="" class="nav-link active">
-                  <i class="nav-icon fas fa-briefcase"></i>
-                <?php } else { ?>
-              <li class="nav-item">
-                <a href="" class="nav-link">
-                  <i class="nav-icon fas fa-briefcase"></i>
-                <?php } ?>
+            <li class="nav-item">
+              <a href="/barang" class="nav-link <?php if ($active == 'Barang') echo 'active'; ?>">
+                <i class="nav-icon fas fa-briefcase"></i>
                 <p>
                   Barang
                 </p>
-                </a>
-              </li>
-              <?php if ('home' == 'users') { ?>
-                <li class="nav-item has-treeview menu-open">
-                  <a href="" class="nav-link active">
-                    <i class="nav-icon fas fa-users"></i>
-                  <?php } else { ?>
-                <li class="nav-item">
-                  <a href="" class="nav-link">
-                    <i class="nav-icon fas fa-users"></i>
-                  <?php } ?>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="/users" class="nav-link <?php if ($active == 'Users') echo 'active'; ?>">
+                <i class="nav-icon fas fa-users"></i>
+                <p>
+                  Users
+                </p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="/invoice" class="nav-link <?php if ($active == 'Invoice') echo 'active'; ?>">
+                <i class="nav-icon fas fa-file-invoice"></i>
+                <p>
+                  Invoice
+                </p>
+              </a>
+            </li>
+            <li class="nav-header">SETTINGS</li>
+            <li class="nav-item">
+              <form id="logout-form" action="{{route('logout')}}" method="POST">
+                @csrf
+                <a href="javascript:;" onclick="document.getElementById('logout-form').submit();" class="nav-link">
+                  <i class="nav-icon fas fa-sign-out-alt"></i>
                   <p>
-                    Users
+                    Log out
                   </p>
-                  </a>
-                </li>
-                <?php if ('home' == 'invoice') { ?>
-                  <li class="nav-item has-treeview menu-open">
-                    <a href="" class="nav-link active">
-                      <i class="nav-icon fas fa-file-invoice"></i>
-                    <?php } else { ?>
-                  <li class="nav-item">
-                    <a href="" class="nav-link">
-                      <i class="nav-icon fas fa-file-invoice"></i>
-                    <?php } ?>
-                    <p>
-                      Invoice
-                    </p>
-                    </a>
-                  </li>
-                  <li class="nav-header">SETTINGS</li>
-                  <li class="nav-item">
-                    <form id="logout-form" action="{{route('logout')}}" method="POST">
-                      @csrf
-                      <a href="javascript:;" onclick="document.getElementById('logout-form').submit();" class="nav-link">
-                        <i class="nav-icon fas fa-sign-out-alt"></i>
-                        <p>
-                          Log out
-                        </p>
-                      </a>
-                    </form>
-                  </li>
+                </a>
+              </form>
+            </li>
           </ul>
         </nav>
         <!-- /.sidebar-menu -->

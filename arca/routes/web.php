@@ -20,4 +20,5 @@ Route::get('/', [App\Http\Controllers\UserController::class, 'index'])->name('us
 
 //Level Admin
 Route::get('/barang', [App\Http\Controllers\AdminController::class, 'index'])->name('admin.barang')->middleware('is_admin');
-Route::get('/users', [App\Http\Controllers\AdminController::class, 'users'])->name('users')->middleware('is_admin');
+Route::get('/users', [App\Http\Controllers\AdminController::class, 'users'])->name('admin.users')->middleware('is_admin');
+Route::get('/invoice', [App\Http\Controllers\AdminController::class, 'invoice'])->name('admin.invoice')->middleware('is_admin');
