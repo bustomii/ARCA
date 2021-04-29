@@ -27,6 +27,7 @@ Route::get('/users', [App\Http\Controllers\AdminController::class, 'users'])->na
 Route::post('/loaduser', [App\Http\Controllers\AdminController::class, 'loaduser'])->name('admin.loaduser')->middleware('is_admin');
 Route::get('/invoice', [App\Http\Controllers\AdminController::class, 'invoice'])->name('admin.invoice')->middleware('is_admin');
 Route::post('/loadinvoice', [App\Http\Controllers\AdminController::class, 'loadinvoice'])->name('admin.loadinvoice')->middleware('is_admin');
+Route::post('/approve', [App\Http\Controllers\AdminController::class, 'approve'])->name('admin.approve')->middleware('is_admin');
 Route::get('/delete/{active}/{id}', [App\Http\Controllers\AdminController::class, 'delete'])->name('admin.delete')->middleware('is_admin');
 
 //detail invoice

@@ -112,6 +112,17 @@ class AdminController extends Controller
         }
     }
 
+    public function approve(Request $request)
+    {
+        $id = $request->id_invoice;
+        $submit = $request->submit;
+        $invoice = Invoice::find($id);
+        $invoice->status = $submit;
+        $invoice->save();
+
+        return redirect()->route('admin.invoice')->with('success', 'Berhasil, Approve Invoice !!!');
+    }
+
     public function delete($active, $id)
     {
         if ($active == 'Barang') {

@@ -159,7 +159,7 @@
                             <div class="table-responsive">
                                 <table class="table">
                                     <tr>
-                                        <th style="width:50%">Subtotal:</th>
+                                        <th style="width:50%">Total:</th>
                                         <td>$250.30</td>
                                     </tr>
                                     <tr>
@@ -181,11 +181,11 @@
 <!-- end detail -->
 
 <script>
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-    });
+    // $.ajaxSetup({
+    //     headers: {
+    //         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    //     }
+    // });
 
     $(document).ready(function() {
         $('.adddata').on('click', function() {

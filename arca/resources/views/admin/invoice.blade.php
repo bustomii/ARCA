@@ -131,7 +131,6 @@
                         <div class="col-12">
                             <h4>
                                 <i class="fas fa-globe"></i> Arca Internasional
-                                <small class="float-right">Date: 2/10/2014</small>
                             </h4>
                         </div>
                     </div>
@@ -161,7 +160,7 @@
                             <div class="table-responsive">
                                 <table class="table">
                                     <tr>
-                                        <th style="width:50%">Subtotal:</th>
+                                        <th style="width:50%">Total:</th>
                                         <td>$250.30</td>
                                     </tr>
                                     <tr>
@@ -173,13 +172,7 @@
                         </div>
                     </div>
                     <div class="row no-print">
-                        <div class="col-12">
-                            <button type="button" class="btn btn-success float-right"><i class="far fa-credit-card"></i> Submit
-                                Payment
-                            </button>
-                            <button type="button" class="btn btn-primary float-right" style="margin-right: 5px;">
-                                <i class="fas fa-download"></i> Generate PDF
-                            </button>
+                        <div class="col-12" id="button_update">
                         </div>
                     </div>
                 </div>
@@ -227,8 +220,28 @@
                     };
                     if (status == 0) {
                         $('#status_').html('<span class="badge badge-warning">Pending</span>');
+                        $('#button_update').html(
+                            '<form action="/approve" method="POST" enctype="multipart/form-data">' +
+                            '{{ csrf_field() }}' +
+                            '<input type="hidden" name="id_invoice" value="' + id + '">' +
+                            '<input type="hidden" name="submit" value="1">' +
+                            '<button type="submit" class="btn btn-success float-right">Approve</button>' +
+                            '</form>' +
+                            '<button type="button"class="btn btn-danger float-right" style="margin-right: 5px;">' +
+                            'Decline' +
+                            '</button>');
                     } else if (status == 1) {
                         $('#status_').html('<span class="badge badge-success">Approval</span>');
+                        $('#button_update').html(
+                            '<form action="/approve" method="POST" enctype="multipart/form-data">' +
+                            '{{ csrf_field() }}' +
+                            '<input type="hidden" name="id_invoice" value="' + id + '">' +
+                            '<input type="hidden" name="submit" value="0">' +
+                            '<button type="submit" class="btn btn-warning float-right">Cancel Approve</button>' +
+                            '</form>' +
+                            '<button type="button" class="btn btn-danger float-right" style="margin-right: 5px;">' +
+                            'Decline' +
+                            '</button>');
                     } else {
                         $('#status_').html('<span class="badge badge-danger">Decline</span>');
                     }
