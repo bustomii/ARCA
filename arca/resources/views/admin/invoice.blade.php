@@ -21,7 +21,12 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="card">
-                            <!-- /.card-header -->
+                            <div class="card-body">
+                                <button style="width:100px" title="update" type="button" class="btn btn-info editdata"><span class="fas fa-plus">
+                                        Invoice
+                                    </span>
+                                </button>
+                            </div>
                             <div class="card-body">
                                 <table id="example1" class="table table-bordered table-striped">
                                     <thead>
@@ -71,5 +76,12 @@
     </section>
 </div>
 
-
+<script language="javascript">
+    function hapusid(hapusid) {
+        if (confirm("Yakin Menghapus Barang")) {
+            window.location.href = '/delete/{{$active}}/' + hapusid;
+            return true;
+        }
+    }
+</script>
 @endsection

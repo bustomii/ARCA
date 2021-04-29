@@ -16,7 +16,7 @@ class CreateInvoiceTable extends Migration
         Schema::create('invoice', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('iduser');
-            $table->boolean('status');
+            $table->boolean('status')->default(0);
             $table->timestamps();
 
             $table->foreign('iduser')

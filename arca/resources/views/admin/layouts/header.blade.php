@@ -8,13 +8,12 @@
           <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-          <!-- <a href="#" class="nav-link">>nbs.</a> -->
         </li>
       </ul>
       <!-- Right navbar links -->
       <ul class="navbar-nav ml-auto">
         <li class="nav-item d-none d-sm-inline-block">
-          <a href="#" class="nav-link"><b></b></a>
+          <a href="" class="nav-link">Hello, <b>{{ Auth::user()->name }}</b></a>
         </li>
         <li class="nav-item">
           <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#"><i class="fas fa-th-large"></i></a>

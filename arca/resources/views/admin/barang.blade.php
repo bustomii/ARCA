@@ -21,7 +21,12 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="card">
-                            <!-- /.card-header -->
+                            <div class="card-body">
+                                <button style="width:100px" title="update" type="button" class="btn btn-info adddata"><span class="fas fa-plus">
+                                        Barang
+                                    </span>
+                                </button>
+                            </div>
                             <div class="card-body">
                                 <table id="example1" class="table table-bordered table-striped">
                                     <thead>
@@ -30,7 +35,7 @@
                                             <th>NAMA BARANG</th>
                                             <th style="text-align: center">HARGA</th>
                                             <th style="text-align: center">STOCK</th>
-                                            <th style="text-align: center">DISCOUNT</th>
+                                            <th style="text-align: center">DISCOUNT (%)</th>
                                             <th style="text-align: center">ACTION</th>
                                         </tr>
                                     </thead>
@@ -56,7 +61,7 @@
                                             <th>NAMA BARANG</th>
                                             <th style="text-align: center">HARGA</th>
                                             <th style="text-align: center">STOCK</th>
-                                            <th style="text-align: center">DISCOUNT</th>
+                                            <th style="text-align: center">DISCOUNT (%)</th>
                                             <th style="text-align: center">ACTION</th>
                                         </tr>
                                     </tfoot>
@@ -69,8 +74,54 @@
     </section>
 </div>
 
+<!-- Start Modal add -->
+<form action="/loadbarang" method="POST" enctype="multipart/form-data">
+    {{ csrf_field() }}
+    <div class="modal fade" id="idadd" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myModalLabel"><i class="nav-icon fas fa-briefcase"></i> Add Barang</h4>
+                </div>
+                <div class="modal-body center">
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label">Nama Barang</label>
+                        <div class="col-sm-8">
+                            <input type="text" name="nama_barang" class="form-control" placeholder="Enter ..." required>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label">Harga</label>
+                        <div class="col-sm-8">
+                            <input type="number" name="harga" class="form-control" placeholder="Enter ..." required>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label">Stok</label>
+                        <div class="col-sm-8">
+                            <input type="number" name="stok" class="form-control" placeholder="Enter ..." required>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label">Discount</label>
+                        <div class="col-sm-8">
+                            <input type="number" name="discount" min="1" max="100" class="form-control" placeholder="Enter ..." required>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal"> Close</button>
+                        <button type="submit" name="submit" value="1" class="btn btn-info"> Simpan</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+<!-- End Modal add -->
+
 <!-- Start Modal Edit -->
-<form action="/edit_barang" method="POST">
+<form action="/loadbarang" method="POST" enctype="multipart/form-data">
+    {{ csrf_field() }}
     <div class="modal fade" id="idedit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -88,24 +139,24 @@
                     <div class="form-group row">
                         <label class="col-sm-3 col-form-label">Harga</label>
                         <div class="col-sm-8">
-                            <input type="text" name="harga" id="harga_edit" class="form-control" placeholder="Enter ..." required>
+                            <input type="number" name="harga" id="harga_edit" class="form-control" placeholder="Enter ..." required>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-sm-3 col-form-label">Stok</label>
                         <div class="col-sm-8">
-                            <input type="text" name="stok" id="stok_edit" class="form-control" placeholder="Enter ..." required>
+                            <input type="number" name="stok" id="stok_edit" class="form-control" placeholder="Enter ..." required>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-sm-3 col-form-label">Discount</label>
                         <div class="col-sm-8">
-                            <input type="text" name="discount" id="discount_edit" class="form-control" placeholder="Enter ..." required>
+                            <input type="number" name="discount" id="discount_edit" min="1" max="100" class="form-control" placeholder="Enter ..." required>
                         </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal"> Close</button>
-                        <button type="submit" name="edit" class="btn btn-info"> Simpan</button>
+                        <button type="submit" name="submit" value="0" class=" btn btn-info"> Simpan</button>
                     </div>
                 </div>
             </div>
@@ -130,7 +181,21 @@
             $('#stok_edit').val(data[3]);
             $('#discount_edit').val(data[4]);
         });
+
+        $('.adddata').on('click', function() {
+            $('#idadd').modal('show');
+        });
     });
 </script>
+
+<script language="javascript">
+    function hapusid(hapusid) {
+        if (confirm("Yakin Menghapus Barang")) {
+            window.location.href = '/delete/{{$active}}/' + hapusid;
+            return true;
+        }
+    }
+</script>
+
 
 @endsection

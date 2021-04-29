@@ -21,7 +21,12 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="card">
-                            <!-- /.card-header -->
+                            <div class="card-body">
+                                <button style="width:100px" title="update" type="button" class="btn btn-info adddata"><span class="fas fa-plus">
+                                        User
+                                    </span>
+                                </button>
+                            </div>
                             <div class="card-body">
                                 <table id="example1" class="table table-bordered table-striped">
                                     <thead>
@@ -66,9 +71,48 @@
     </section>
 </div>
 
+<!-- Start Modal add -->
+<form action="/loaduser" method="POST" enctype="multipart/form-data">
+    {{ csrf_field() }}
+    <div class="modal fade" id="idadd" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myModalLabel"><i class="nav-icon fas fa-user"></i> Add User</h4>
+                </div>
+                <div class="modal-body center">
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label">Nama</label>
+                        <div class="col-sm-8">
+                            <input type="text" name="nama" class="form-control" placeholder="Enter ..." required>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label">Email</label>
+                        <div class="col-sm-8">
+                            <input type="email" name="email" class="form-control" placeholder="Enter ..." required>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label">Password</label>
+                        <div class="col-sm-8">
+                            <input type="password" name="password" class="form-control" placeholder="Enter ..." required>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal"> Close</button>
+                        <button type="submit" name="submit" value="1" class="btn btn-info"> Simpan</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+<!-- End Modal add -->
 
 <!-- Start Modal Edit -->
-<form action="/edit_barang" method="POST">
+<form action="/loaduser" method="POST" enctype="multipart/form-data">
+    {{ csrf_field() }}
     <div class="modal fade" id="idedit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -97,7 +141,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal"> Close</button>
-                        <button type="submit" name="edit" class="btn btn-info"> Simpan</button>
+                        <button type="submit" name="submit" value="0" class="btn btn-info"> Simpan</button>
                     </div>
                 </div>
             </div>
@@ -121,7 +165,19 @@
             $('#email_edit').val(data[2]);
             $('#password_edit').val(data[3]);
         });
+
+        $('.adddata').on('click', function() {
+            $('#idadd').modal('show');
+        });
     });
 </script>
 
+<script language="javascript">
+    function hapusid(hapusid) {
+        if (confirm("Yakin Menghapus User")) {
+            window.location.href = '/delete/{{$active}}/' + hapusid;
+            return true;
+        }
+    }
+</script>
 @endsection

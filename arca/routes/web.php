@@ -20,5 +20,8 @@ Route::get('/', [App\Http\Controllers\UserController::class, 'index'])->name('us
 
 //Level Admin
 Route::get('/barang', [App\Http\Controllers\AdminController::class, 'index'])->name('admin.barang')->middleware('is_admin');
+Route::post('/loadbarang', [App\Http\Controllers\AdminController::class, 'loadbarang'])->name('admin.loadbarang')->middleware('is_admin');
+Route::post('/loaduser', [App\Http\Controllers\AdminController::class, 'loaduser'])->name('admin.loaduser')->middleware('is_admin');
 Route::get('/users', [App\Http\Controllers\AdminController::class, 'users'])->name('admin.users')->middleware('is_admin');
 Route::get('/invoice', [App\Http\Controllers\AdminController::class, 'invoice'])->name('admin.invoice')->middleware('is_admin');
+Route::get('/delete/{active}/{id}', [App\Http\Controllers\AdminController::class, 'delete'])->name('admin.delete')->middleware('is_admin');
