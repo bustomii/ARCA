@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Invoice;
 use Illuminate\Http\Request;
-use App\User;
+use App\Models\User;
+use App\Models\Invoice_meta;
 
 class HomeController extends Controller
 {
@@ -25,5 +27,13 @@ class HomeController extends Controller
     public function index()
     {
         return view('/');
+    }
+
+    public function detail($id)
+    {
+        $meta = Invoice_meta::join('barang', 'invoice_meta.idbarang', '=', 'barang.id')
+            ->where('idinvoice', $id)->get();
+
+        return response(['data' => $meta], 200);
     }
 }

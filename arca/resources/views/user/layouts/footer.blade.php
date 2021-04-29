@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="shortcut icon" type="image/x-icon" href="{{asset('/images/icon.png')}}">
-  <title>Arca Internasional</title>
+  <title>TITLE</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -36,8 +36,13 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js">
   </script>
 
+  <script src="{{asset('/plugins/select2/js/select2.full.min.js')}}"></script>
+
   <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 
+  <!-- Sweet Alert 2 -->
+  <script src="{{asset('/plugins/sweetalert2/sweetalert2.all.min.js')}}"></script>
+  <meta name="csrf-token" content="{{ csrf_field() }}" />
 
 </head>
 
@@ -81,6 +86,14 @@
 <!-- OPTIONAL SCRIPTS -->
 <script src="{{asset('/dist/js/demo.js')}}"></script>
 
+<!-- jQuery Mapael -->
+<script src="{{asset('/plugins/jquery-mousewheel/jquery.mousewheel.js')}}"></script>
+<script src="{{asset('/plugins/raphael/raphael.min.js')}}"></script>
+<script src="{{asset('/plugins/jquery-mapael/jquery.mapael.min.js')}}"></script>
+<script src="{{asset('/plugins/jquery-mapael/maps/usa_states.min.js')}}"></script>
+<!-- ChartJS -->
+<script src="{{asset('/plugins/chart.js/Chart.min.js')}}"></script>
+<script src="{{asset('/plugins/chart.js/Chart.min.js')}}"></script>
 <!-- PAGE SCRIPTS -->
 <!-- DataTables -->
 <script src="{{asset('/plugins/datatables/jquery.dataTables.js')}}"></script>
@@ -104,16 +117,5 @@
       var time = h + ":" + m + ":" + s;
       $('.live-clock').html(time);
     }, 1000);
-  });
-</script>
-
-<script>
-  $(document).ready(function() {
-    var table = $('#example1').DataTable({
-      rowReorder: {
-        selector: 'td:nth-child(2)'
-      },
-      responsive: true
-    });
   });
 </script>

@@ -38,6 +38,8 @@
 
   <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 
+  <meta name="csrf-token" content="{{ csrf_field() }}" />
+
 </head>
 
 @include('admin.layouts.header')
