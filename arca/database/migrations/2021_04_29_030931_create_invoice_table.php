@@ -17,6 +17,7 @@ class CreateInvoiceTable extends Migration
             $table->id();
             $table->unsignedBigInteger('iduser');
             $table->boolean('status')->default(0);
+            $table->string('reason');
             $table->timestamps();
 
             $table->foreign('iduser')

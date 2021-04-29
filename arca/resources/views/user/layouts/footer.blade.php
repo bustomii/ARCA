@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="shortcut icon" type="image/x-icon" href="{{asset('/images/icon.png')}}">
-  <title>TITLE</title>
+  <title>Arca Internasional</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -42,7 +42,6 @@
 
   <!-- Sweet Alert 2 -->
   <script src="{{asset('/plugins/sweetalert2/sweetalert2.all.min.js')}}"></script>
-  <meta name="csrf-token" content="{{ csrf_field() }}" />
 
 </head>
 

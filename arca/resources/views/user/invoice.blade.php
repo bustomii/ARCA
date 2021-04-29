@@ -49,7 +49,7 @@
                                             <td style="text-align: center"><button style="width:50px" title="view detail" type="button" id="{{$i->id}}" status="{{$i->status}}" class="btn btn-outline-primary view"><span class="fas fa-eye"></span> </button></i></td>
                                             <td style="text-align: center"><?php if ($i->status == 1) echo '<span class="badge badge-success">Approval</span>';
                                                                             else if ($i->status == 0) echo '<span class="badge badge-warning">Pending</span>';
-                                                                            else echo '<span class="badge badge-danger">Decline</span>' ?></td>
+                                                                            else echo '<span class="badge badge-danger">Decline</span>' ?><br /> ( {{$i->reason}} )</td>
                                             <td style="text-align: center">
                                                 <button style="width:50px" title="update" type="button" id="{{$i->id}}" class="btn btn-outline-info editdata"><span class="fas fa-edit"></span> </button>
                                                 <button title="delete" style="width:50px" onclick="hapusid('{{$i->id}}')" type="button" class="btn btn-outline-danger"><span class="fas fa-trash-alt"></span></button>

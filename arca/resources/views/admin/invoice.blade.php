@@ -49,7 +49,7 @@
                                             <td style="text-align: center"><button style="width:50px" title="view detail" type="button" id="{{$i->id}}" status="{{$i->status}}" class="btn btn-outline-primary view"><span class="fas fa-eye"></span> </button></i></td>
                                             <td style="text-align: center"><?php if ($i->status == 1) echo '<span class="badge badge-success">Approval</span>';
                                                                             else if ($i->status == 0) echo '<span class="badge badge-warning">Pending</span>';
-                                                                            else echo '<span class="badge badge-danger">Decline</span>' ?></td>
+                                                                            else echo '<span class="badge badge-danger">Decline</span>' ?><br /> ( {{$i->reason}} )</td>
                                             <td style="text-align: center">
                                                 <button style="width:50px" title="update" type="button" id="{{$i->id}}" class="btn btn-outline-info editdata"><span class="fas fa-edit"></span> </button>
                                                 <button title="delete" style="width:50px" onclick="hapusid('{{$i->id}}')" type="button" class="btn btn-outline-danger"><span class="fas fa-trash-alt"></span></button>
@@ -176,6 +176,22 @@
                         </div>
                     </div>
                 </div>
+                <div class="invoice p-3 mb-3">
+                    <div class="" style="margin-bottom: 10px;">
+                        <form action="/decline" method="post">
+                            {{ csrf_field() }}
+                            <div class="row">
+                                <div class="col-10 float-right">
+                                    <input required type="hidden" class="form-control" name="id" id="id_invoice">
+                                    <input required type="text" class="form-control" name="reason" placeholder="Reason">
+                                </div>
+                                <div class="col-2 float-right">
+                                    <button type="submit" name="submit" value="2" class="btn btn-danger float-right"> Decline</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal"> Close</button>
                 </div>
@@ -186,11 +202,11 @@
 <!-- end detail -->
 
 <script>
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-    });
+    // $.ajaxSetup({
+    //     headers: {
+    //         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    //     }
+    // });
 
     $(document).ready(function() {
         $('.adddata').on('click', function() {
@@ -226,10 +242,7 @@
                             '<input type="hidden" name="id_invoice" value="' + id + '">' +
                             '<input type="hidden" name="submit" value="1">' +
                             '<button type="submit" class="btn btn-success float-right">Approve</button>' +
-                            '</form>' +
-                            '<button type="button"class="btn btn-danger float-right" style="margin-right: 5px;">' +
-                            'Decline' +
-                            '</button>');
+                            '</form>');
                     } else if (status == 1) {
                         $('#status_').html('<span class="badge badge-success">Approval</span>');
                         $('#button_update').html(
@@ -238,13 +251,11 @@
                             '<input type="hidden" name="id_invoice" value="' + id + '">' +
                             '<input type="hidden" name="submit" value="0">' +
                             '<button type="submit" class="btn btn-warning float-right">Cancel Approve</button>' +
-                            '</form>' +
-                            '<button type="button" class="btn btn-danger float-right" style="margin-right: 5px;">' +
-                            'Decline' +
-                            '</button>');
+                            '</form>');
                     } else {
                         $('#status_').html('<span class="badge badge-danger">Decline</span>');
                     }
+                    $('#id_invoice').val(id);
                     $('#myModal').modal("show");
                 }
             });
@@ -293,4 +304,14 @@
         // document.getElementById("child").classList.remove("child");
     }
 </script>
+
+<script>
+    $(document).ready(function() {
+        $(".reason").hide();
+        $("#reason_x").click(function() {
+            $(".reason").show();
+        })
+    });
+</script>
+
 @endsection

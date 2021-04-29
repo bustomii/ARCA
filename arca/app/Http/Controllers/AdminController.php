@@ -98,7 +98,6 @@ class AdminController extends Controller
                 'status' => 0,
             ]);
             $lastID = $invoice->id;
-
             for ($i = 0; $i < count($request->barang); $i++) {
                 $meta = Invoice_meta::insert([
                     'idinvoice' => $lastID,
@@ -118,6 +117,18 @@ class AdminController extends Controller
         $submit = $request->submit;
         $invoice = Invoice::find($id);
         $invoice->status = $submit;
+        $invoice->save();
+
+        return redirect()->route('admin.invoice')->with('success', 'Berhasil, Approve Invoice !!!');
+    }
+
+    public function decline(Request $request)
+    {
+        $id = $request->id;
+        $reason = $request->reason;
+        $invoice = Invoice::find($id);
+        $invoice->status = 2;
+        $invoice->reason = $reason;
         $invoice->save();
 
         return redirect()->route('admin.invoice')->with('success', 'Berhasil, Approve Invoice !!!');
